@@ -21,21 +21,16 @@ def random_o_x_canvas(canvas):
     # Function to create a random initial position of the player and the exit of the maze
     if len(canvas) > 2 and len(canvas[0]) > 2:  # Check to avoid index errors in case of very small mazes.
         row_exit = random.randint(1, len(canvas) - 2)
-        col_exit = random.randint(1, len(canvas[0]) - 2)
-        # Ensure player and exit do not overlap
-        row_player, col_player = row_exit, col_exit
-        while row_player == row_exit and col_player == col_exit:
-            row_player = random.randint(1, len(canvas) - 2)
-            col_player = random.randint(1, len(canvas[0]) - 2)
+        col_exit = random.randint(2, len(canvas[0]) - 2)
 
-        canvas[row_player][col_player] = 'o'
+        canvas[1][1] = 'O'
         canvas[row_exit][col_exit] = 'X'
 
         #adding the '*' after the 'X', the range method ( from, to )
         for col in range(col_exit + 1, len(canvas[0])):
             canvas[row_exit][col] = '*'
 
-        walls_input = random.randint(1, len(canvas) - 2)
+        walls_input = random.randint(3, len(canvas) - 2)
         for _ in range(walls_input):
             wall_row = random.randint(3, len(canvas) - 2)
             wall_col_start = random.randint(0, len(canvas[0]) - 2)
